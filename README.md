@@ -33,7 +33,7 @@ POST Body:
  "value": "localizedValue"
 }
 `
-# How it work
+# How it works
 
 i18nClient will download all the translation for the current language of your phone. 
 Also, it will remplace automatically every text found in your storyboard and/or xib files.
