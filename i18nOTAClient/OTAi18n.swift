@@ -165,10 +165,17 @@ public class i18n {
     
     guard paths.count > 0,
       let data = FileManager.default.contents(atPath: "\(paths[0])/IVI/\(language).lproj/\(tableName)"),
-      let dico = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:String]
+      let dico = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
       else { throw LocalizedError.fileNotFound("\(tableName) was not found or is malformed") }
     
-    self.dico = dico
+    dico.forEach { (key, value) in
+      guard
+        let key = key as? String,
+        let value = value as? String
+        else { return }
+      
+      self.dico[key] = value
+    }
   }
   
   
